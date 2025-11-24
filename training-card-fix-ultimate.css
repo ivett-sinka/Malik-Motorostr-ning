@@ -1,0 +1,68 @@
+/**
+ * ULTIMATE FIX - Training Card SVG Background
+ * Ez a legmagasabb prioritású CSS szabály, ami biztosan felülírja az összes mást
+ */
+
+/* Alapértelmezett szabály minden .training-card elemre */
+.training-card,
+.training-card.wp-block-column,
+div.training-card,
+div.wp-block-column.training-card {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-origin: border-box !important;
+    background-clip: border-box !important;
+}
+
+/* Inline style-al rendelkező training-card elemekre */
+.training-card[style*="background-image"],
+.training-card[style*="background"],
+div.training-card[style*="background-image"],
+div.wp-block-column.training-card[style*="background-image"] {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* WordPress specifikus osztályokkal */
+.wp-block-column.training-card.is-layout-flow,
+.training-type-section .training-card,
+.training-type-section .wp-block-column.training-card {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Ha más CSS felülírja, ez még erősebb szabály */
+.training-type-section .wp-block-columns .wp-block-column.training-card[style] {
+    background-size: 100% 100% !important;
+}
+
+/* Legvégső megoldás - ID-vel kombinálva (ha van) */
+body .training-type-section .training-card,
+html body .training-type-section .training-card {
+    background-size: 100% 100% !important;
+}
+
+/* Responsive - minden méreten */
+@media screen and (min-width: 1px) {
+    .training-card {
+        background-size: 100% 100% !important;
+    }
+}
+
+/**
+ * HASZNÁLAT:
+ *
+ * Opció 1 - WordPress téma CSS-be:
+ * Másold be ezt a kódot a téma style.css fájljába vagy a Additional CSS-be (Customizer)
+ *
+ * Opció 2 - Külön CSS fájlként:
+ * <link rel="stylesheet" href="/wp-content/themes/your-theme/training-card-fix-ultimate.css">
+ *
+ * Opció 3 - Inline a <head>-be:
+ * <style>
+ *   .training-card { background-size: 100% 100% !important; }
+ * </style>
+ */
