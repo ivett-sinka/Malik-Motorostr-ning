@@ -161,9 +161,20 @@ ul li::marker {
 
 .training-card{
     background: url("/wp-content/uploads/card-grey-bg.svg") no-repeat center center;
-    background-size: 100% 100%;
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-origin: border-box !important;
+    background-clip: border-box !important;
     padding: 70px 40px;
+    position: relative;
 }
+
+/* Biztosítja, hogy az SVG háttérkép mindig felveszi a teljes div méretet */
+.training-card[style*="background-image"] {
+    background-size: 100% 100% !important;
+}
+
 .training-card li,
 .training-card p{
     color: var(--txt-p);
