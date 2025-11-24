@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Card SVG Teszt</title>
+    <link rel="stylesheet" href="training-type-section.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #715835;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .test-card {
+            width: 500px;
+            height: 800px;
+            margin: 20px;
+            border: 3px solid red;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .info {
+            background: white;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Training Card SVG Háttérkép Teszt</h1>
+
+        <div class="info">
+            <h3>Teszt 1: CSS-sel beállított háttér</h3>
+            <p>Ez a kártya a CSS-ből kapja a háttérképet (training-type-section.css)</p>
+        </div>
+
+        <div class="training-card test-card">
+            <h3>Teszt kártya CSS háttérrel</h3>
+            <p>Ha az SVG jól működik, ez a div teljes területét kitölti.</p>
+            <p>Szélesség: 500px</p>
+            <p>Magasság: 800px</p>
+        </div>
+
+        <div class="info">
+            <h3>Teszt 2: Inline style-lal beállított háttér</h3>
+            <p>Ez a kártya inline style-ból kapja a háttérképet</p>
+        </div>
+
+        <div class="training-card test-card"
+             style="background-image: url('card-grey-bg.svg'); background-size: 100% 100% !important; background-position: center; background-repeat: no-repeat;">
+            <h3>Teszt kártya inline háttérrel</h3>
+            <p>Ha az SVG jól működik, ez a div teljes területét kitölti.</p>
+            <p>Szélesség: 500px</p>
+            <p>Magasság: 800px</p>
+        </div>
+
+        <div class="info">
+            <h3>Teszt 3: Különböző méretek</h3>
+        </div>
+
+        <div class="training-card" style="width: 300px; height: 600px; margin: 20px; border: 3px solid blue;">
+            <h3>Kisebb kártya</h3>
+            <p>300px x 600px</p>
+        </div>
+
+        <div class="training-card" style="width: 700px; height: 1000px; margin: 20px; border: 3px solid green;">
+            <h3>Nagyobb kártya</h3>
+            <p>700px x 1000px</p>
+        </div>
+    </div>
+
+    <script src="training-card-svg-resize.js"></script>
+
+    <script>
+        // Debug információk
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.training-card');
+
+            cards.forEach((card, index) => {
+                const style = window.getComputedStyle(card);
+                console.log(`Card ${index + 1}:`);
+                console.log('  Background Image:', style.backgroundImage);
+                console.log('  Background Size:', style.backgroundSize);
+                console.log('  Background Position:', style.backgroundPosition);
+                console.log('  Width:', card.offsetWidth);
+                console.log('  Height:', card.offsetHeight);
+                console.log('---');
+            });
+        });
+    </script>
+</body>
+</html>
