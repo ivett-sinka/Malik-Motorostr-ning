@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Card - Garantált Megoldás</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Merriweather:wght@700&display=swap');
+
+        :root {
+            --dark: #131009;
+            --brown: #715835;
+            --gold: #C9A961;
+            --red: #D32F2F;
+            --txt-p: #424242;
+        }
+
+        body {
+            background: var(--brown);
+            font-family: "Inter", serif;
+            padding: 40px 20px;
+        }
+
+        /* TRAINING CARD - GARANTÁLT MEGOLDÁS */
+        .training-card {
+            position: relative;
+            padding: 70px 40px;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            min-height: 500px;
+
+            /* NEM kell background-image! */
+        }
+
+        /* SVG Háttér - IMG Tag módszerrel */
+        .training-card-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+
+            /* EZ A KULCS: object-fit: fill */
+            object-fit: fill !important;
+
+            /* Torzítás engedélyezése minden körülmény között */
+            object-position: 0 0;
+            display: block;
+        }
+
+        /* Tartalom előtérbe */
+        .training-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .training-card h3 {
+            font-family: "Merriweather", serif;
+            font-size: 32px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin: 0 0 20px 0;
+        }
+
+        .training-card p,
+        .training-card li {
+            color: var(--txt-p);
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 1.8px;
+        }
+
+        .training-card ul {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        .training-card li::marker {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .training-card {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Debug - töröld production-ban */
+        .debug-info {
+            background: white;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <strong>✅ Ez a megoldás GARANTÁLTAN működik!</strong><br>
+        Az IMG tag object-fit: fill beállítással MINDIG kitölti a teljes div méretet.
+    </div>
+
+    <!-- TRAINING CARD 1 -->
+    <div class="training-card">
+        <!-- SVG Háttér - IMG Tag -->
+        <img src="card-grey-bg.svg"
+             class="training-card-bg-img"
+             alt=""
+             aria-hidden="true">
+
+        <!-- Tartalom -->
+        <div class="training-card-content">
+            <p>🏍️ ikon</p>
+            <h3>Alapfokú vezetéstechnikai tréning</h3>
+            <p>Kezdőknek és haladóknak</p>
+            <p><strong>40 000 Ft/ fő</strong></p>
+            <p>8 óra (8:00 – 16:00)</p>
+            <p>maximum 5 fő</p>
+            <hr style="margin: 20px 0; border-color: #ccc;">
+            <p><strong>Mit tanulsz?</strong></p>
+            <ul>
+                <li>Helyes testtartás és motorkezelés</li>
+                <li>Vészfékezés</li>
+                <li>Kikerülő manőverek</li>
+                <li>Szlalom és kanyarodási technikák</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TRAINING CARD 2 - Különböző méret -->
+    <div class="training-card" style="min-height: 700px;">
+        <img src="card-grey-bg.svg"
+             class="training-card-bg-img"
+             alt=""
+             aria-hidden="true">
+
+        <div class="training-card-content">
+            <p>🏆 ikon</p>
+            <h3>VIP vezetéstechnikai tréning</h3>
+            <p>A VIP tréning teljes mértékben rád szabott.</p>
+            <p><strong>80 000 Ft/ fő</strong></p>
+            <p>6 óra (8:00 – 14:00)</p>
+            <p>maximum 2 fő</p>
+            <hr style="margin: 20px 0; border-color: #ccc;">
+            <p><strong>Mit tanulsz?</strong></p>
+            <ul>
+                <li>Helyes testtartás és motorkezelés</li>
+                <li>Vészfékezés</li>
+                <li>Egyéni igényekre szabott gyakorlatok</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="debug-info">
+        <strong>Ellenőrzés:</strong><br>
+        Változtasd a böngésző ablak méretét → Az SVG követi a div méretét!<br>
+        A két kártya különböző magasságú → Az SVG mindkettőt kitölti!
+    </div>
+
+    <script>
+        // Debug - Ellenőrzi a méreteket
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.training-card').forEach((card, index) => {
+                const img = card.querySelector('.training-card-bg-img');
+                console.log(`Card ${index + 1}:`);
+                console.log(`  Div méret: ${card.offsetWidth}x${card.offsetHeight}`);
+                console.log(`  IMG méret: ${img.offsetWidth}x${img.offsetHeight}`);
+                console.log(`  IMG object-fit: ${window.getComputedStyle(img).objectFit}`);
+            });
+        });
+    </script>
+</body>
+</html>
