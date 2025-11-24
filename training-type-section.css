@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+
+:root {
+    --dark: #131009;
+    --brown: #715835;
+    --gold: #C9A961;
+    --red: #D32F2F;
+    --light-grey: #E8E8E8;
+    --light-dark: #1D1A13;
+    --middle-grey: #D5D5D5;
+    --txt-h: #131009;
+    --txt-p: #424242;
+
+}
+
+html {
+    font-size: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: var(--dark);
+    font-family: "Inter", serif;
+    color: white;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.content-box,
+.fullwide .wp-block-group__inner-container {
+    max-width: 1542px;
+    margin: 0 auto;
+    padding: 0 150px;
+}
+
+/*  Címsorok beállításai */
+h1,
+h2,
+h3 {
+    font-family: "Merriweather", serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+h1,
+h2 {
+    font-size: clamp(36px, 2vw, 48px);
+    letter-spacing: 4.8px;
+    color: var(--gold);
+    margin-top: 0;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: 3.2px;
+    color: var(--gold);
+    margin-top: 0;
+}
+
+p {
+    font-size: clamp(16px, 1.6vw, 1rem);
+    letter-spacing: 1.8px;
+}
+
+a {
+    color: var(--red);
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.margin-bottom {
+    margin-bottom: 2rem;
+}
+
+.button,
+.wp-block-button a,
+input[type="submit"] {
+    display: inline-block;
+    color: white;
+    background: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Inter", serif;
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px 24px;
+    border-radius: 10px;
+    transition: all 0.8s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.wp-block-buttons .secondary-button a {
+    display: inline-block;
+    color: white;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Inter", serif;
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px 24px;
+    border-radius: 10px;
+    border: solid 2px var(--red);
+    transition: all 0.8s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.8s ease, box-shadow 0.4s ease;
+}
+
+.button:hover,
+.wp-block-button a:hover,
+.secondary-button a:hover,
+input[type="submit"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-buttons>.wp-block-button {
+    margin-bottom: 1rem;
+}
+
+.fullwide {
+    width: calc(100vw - 16px);
+    left: calc(50% + 8px);
+    position: relative;
+    margin-left: -50vw;
+    gap: unset;
+    margin-bottom: 0;
+}
+
+
+/* listaelemek */
+ul li::marker {
+    color: var(--gold);
+    font-size: 30px;
+    line-height: 0;
+    margin-right: 0.4rem;
+}
+
+
+/* Ikonok */
+.ikon{
+    margin: 0;
+}
+
+
+/* Tréning típusok szekció */
+.training-type-section{
+    background-color: var(--brown);
+}
+
+.training-card{
+    background: url("/wp-content/uploads/card-grey-bg.svg") no-repeat center center;
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-origin: border-box !important;
+    background-clip: border-box !important;
+    padding: 70px 40px;
+    position: relative;
+}
+
+/* Biztosítja, hogy az SVG háttérkép mindig felveszi a teljes div méretet */
+.training-card[style*="background-image"] {
+    background-size: 100% 100% !important;
+}
+
+.training-card li,
+.training-card p{
+    color: var(--txt-p);
+}
