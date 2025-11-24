@@ -1,0 +1,53 @@
+/*
+ * SVG háttérkép méretezés megoldás
+ * Ez biztosítja, hogy az SVG háttérkép mindig pontosan felvegye a konténer méretét
+ */
+
+.training-card,
+.card {
+    /* Az SVG háttérkép 100%-ra nyújtása szélességben és magasságban */
+    background-size: 100% 100% !important;
+
+    /* Háttérkép pozícionálása */
+    background-position: center center !important;
+
+    /* Ne ismétlődjön a háttérkép */
+    background-repeat: no-repeat !important;
+
+    /* Az SVG mint háttérkép a teljes területet lefedi */
+    background-origin: border-box !important;
+    background-clip: border-box !important;
+}
+
+/*
+ * Alternatív megoldás specifikus SVG háttérképhez
+ * Használd ezt, ha az SVG-t inline data URL-ként adtad meg
+ */
+.training-card.svg-stretch,
+.card.svg-stretch {
+    background-size: 100% 100% !important;
+    background-position: 0 0 !important;
+    background-repeat: no-repeat !important;
+}
+
+/*
+ * Ha szeretnéd, hogy az SVG ne torzuljon, csak kitöltse a területet:
+ * Használd a .svg-cover osztályt
+ */
+.training-card.svg-cover,
+.card.svg-cover {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/*
+ * Ha az SVG-t teljesen be szeretnéd látni torzítás nélkül:
+ * Használd a .svg-contain osztályt
+ */
+.training-card.svg-contain,
+.card.svg-contain {
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
