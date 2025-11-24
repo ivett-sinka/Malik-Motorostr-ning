@@ -1,0 +1,63 @@
+/**
+ * WordPress-kompatibilis Training Card stílusok
+ * SVG háttér absolute pozícióval
+ */
+
+.training-card {
+    position: relative;
+    padding: 70px 40px;
+    color: #424242;
+    min-height: 400px;
+    /* Nincs background-image! */
+}
+
+/* SVG háttér elem - absolute pozíció */
+.training-card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Nem zavarja a kattintásokat */
+    overflow: hidden;
+}
+
+/* SVG elem a háttér div-en belül */
+.training-card-background svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Tartalom előtérbe hozása */
+.training-card-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* Alternatíva: Ha IMG tag-et használsz a háttérhez */
+.training-card-background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Torzítás engedélyezése */
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .training-card {
+        padding: 40px 20px;
+    }
+}
+
+/* Debug segítség - töröld production-ban */
+.training-card-background {
+    border: 2px dashed rgba(255, 0, 0, 0.3);
+}

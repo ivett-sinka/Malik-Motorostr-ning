@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Card - Pseudo-element Háttér</title>
+    <style>
+        .training-card {
+            position: relative;
+            padding: 70px 40px;
+            color: #424242;
+            min-height: 400px;
+        }
+
+        /* ::before pseudo-element mint háttér */
+        .training-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('card-grey-bg.svg');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Tartalom automatikusan előtérben van */
+        .training-card > * {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="training-card">
+        <!-- Nincs szükség külön háttér elemre! -->
+        <h3>Alapfokú vezetéstechnikai tréning</h3>
+        <p>Kezdőknek és haladóknak</p>
+        <p>40 000 Ft/ fő</p>
+    </div>
+</body>
+</html>

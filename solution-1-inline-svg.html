@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Card - Inline SVG Háttér</title>
+    <style>
+        .training-card {
+            position: relative;
+            padding: 70px 40px;
+            color: #424242;
+            /* A kártya mérete dinamikus, a tartalom határozza meg */
+            min-height: 400px;
+        }
+
+        /* SVG háttér - absolute pozícióval */
+        .training-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* A tartalom mögé kerül */
+        }
+
+        /* Az SVG elem magát nyújtja 100%-ra */
+        .training-card-bg svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            /* preserveAspectRatio="none" az SVG-ben torzítást engedélyez */
+        }
+
+        /* Tartalom előtérbe */
+        .training-card-content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="training-card">
+        <!-- SVG Háttér -->
+        <div class="training-card-bg">
+            <svg viewBox="0 0 536 1387" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_159_30)">
+                    <path d="M406.731 0C415.224 0 423.318 3.59899 429.007 9.9043L528.274 119.938C533.247 125.449 536 132.609 536 140.032V1367C536 1378.05 527.046 1387 516 1387H20C8.95431 1387 0 1378.05 0 1367V20C5.15439e-06 8.95431 8.95431 1.03081e-06 20 0H406.731Z" fill="#E8E8E8"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_159_30">
+                        <rect width="536" height="1387" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Tartalom -->
+        <div class="training-card-content">
+            <h3>Alapfokú vezetéstechnikai tréning</h3>
+            <p>Kezdőknek és haladóknak</p>
+            <p>40 000 Ft/ fő</p>
+        </div>
+    </div>
+</body>
+</html>
