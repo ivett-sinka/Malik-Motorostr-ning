@@ -1,0 +1,537 @@
+/**
+ * Hamburger Menu Styles
+ * Compatible with WordPress structure
+ * Uses span elements for hamburger icon
+ */
+
+/* ===========================
+   Navigation Header
+   =========================== */
+#nav-header {
+    padding: 1rem 0;
+    z-index: 10;
+    position: relative;
+    color: white;
+}
+
+/* ===========================
+   Logo Styles
+   =========================== */
+#logo a {
+    display: flex;
+    align-items: center;
+}
+
+#logotipia svg {
+    width: auto;
+    height: 2.1rem;
+}
+
+#emblem svg {
+    width: auto;
+    height: 5rem;
+    margin-right: 14px;
+}
+
+/* ===========================
+   Main Menu (Desktop)
+   =========================== */
+#main-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#main-menu ul {
+    display: flex;
+    list-style-type: none !important;
+    margin-bottom: 1rem;
+}
+
+#main-menu ul li {
+    margin-left: 3rem;
+}
+
+#main-menu ul li::before {
+    background: none;
+}
+
+#main-menu ul li a {
+    color: white;
+    padding: 0.5rem 0;
+    font-weight: 400;
+    position: relative;
+    font-size: clamp(16px, 1.6vw, 0.8rem);
+    text-transform: uppercase;
+}
+
+#main-menu ul li a:hover {
+    color: var(--gold);
+}
+
+#main-menu ul li ul {
+    display: none;
+}
+
+/* ===========================
+   Bottom Head Info
+   =========================== */
+#bottom-head ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+#bottom-head a {
+    font-size: 0.7rem;
+    color: var(--body-txt);
+}
+
+#bottom-head a:hover {
+    color: var(--gold);
+}
+
+#bottom-head ul li {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+/* ===========================
+   Nav Menu Wrapper
+   =========================== */
+#nav-menu {
+    position: relative;
+}
+
+.menu {
+    margin-top: 2rem;
+}
+
+/* ===========================
+   Hamburger Button (Hidden on Desktop)
+   =========================== */
+#hamburger {
+    display: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: relative;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+#hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--gold);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: center;
+}
+
+/* Hamburger Animation States */
+
+/* Open state (X icon) */
+#hamburger.nyitva {
+    justify-content: center;
+}
+
+#hamburger.nyitva span:nth-child(1) {
+    transform: translateY(0px) rotate(45deg);
+}
+
+#hamburger.nyitva span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+#hamburger.nyitva span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Animating class for smooth opening */
+#hamburger.animating span:nth-child(1) {
+    animation: topBarToX 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+#hamburger.animating span:nth-child(2) {
+    animation: middleBarFade 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+#hamburger.animating span:nth-child(3) {
+    animation: bottomBarToX 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Closing animation */
+#hamburger.closing span:nth-child(1) {
+    animation: topBarFromX 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+#hamburger.closing span:nth-child(2) {
+    animation: middleBarShow 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+#hamburger.closing span:nth-child(3) {
+    animation: bottomBarFromX 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* ===========================
+   Hamburger Keyframe Animations
+   =========================== */
+
+/* Opening animations */
+@keyframes topBarToX {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(4px) rotate(0);
+    }
+    100% {
+        transform: translateY(4px) rotate(45deg);
+    }
+}
+
+@keyframes middleBarFade {
+    0% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
+@keyframes bottomBarToX {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-4px) rotate(0);
+    }
+    100% {
+        transform: translateY(-4px) rotate(-45deg);
+    }
+}
+
+/* Closing animations */
+@keyframes topBarFromX {
+    0% {
+        transform: translateY(4px) rotate(45deg);
+    }
+    50% {
+        transform: translateY(4px) rotate(0);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@keyframes middleBarShow {
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes bottomBarFromX {
+    0% {
+        transform: translateY(-4px) rotate(-45deg);
+    }
+    50% {
+        transform: translateY(-4px) rotate(0);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* ===========================
+   Overlay
+   =========================== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===========================
+   Mobile & Tablet Styles
+   =========================== */
+@media only screen and (max-width: 1380px) {
+
+    /* Show hamburger button */
+    #hamburger {
+        display: flex;
+    }
+
+    /* Adjust main menu layout */
+    #main-menu {
+        flex-wrap: wrap;
+    }
+
+    #main-menu ul,
+    #bottom-head ul {
+        display: block;
+    }
+
+    #main-menu ul li {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    #bottom-head ul li {
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Mobile menu styling */
+    #nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 500px;
+        height: 100vh;
+        background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        transition: right 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #nav-menu.nyitva {
+        right: 0;
+    }
+
+    #nav-menu.active {
+        right: 0;
+    }
+
+    /* Menu items styling */
+    .menu-item,
+    #main-menu ul li,
+    #bottom-head ul li {
+        margin: 1.5rem 0;
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.5s ease;
+        text-align: center;
+        width: 100%;
+    }
+
+    #nav-menu.active .menu-item,
+    #nav-menu.active #main-menu ul li,
+    #nav-menu.active #bottom-head ul li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Staggered animation delays */
+    #nav-menu.active #main-menu ul li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    #nav-menu.active #main-menu ul li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    #nav-menu.active #main-menu ul li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    #nav-menu.active #main-menu ul li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    #nav-menu.active #main-menu ul li:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    #nav-menu.active #main-menu ul li:nth-child(6) {
+        transition-delay: 0.6s;
+    }
+
+    /* Menu link styling */
+    .menu-item a,
+    #main-menu ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        letter-spacing: 2px;
+        position: relative;
+        transition: color 0.3s ease;
+        display: inline-block;
+    }
+
+    .menu-item a::after,
+    #main-menu ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 80%;
+        height: 3px;
+        background: var(--gold);
+        transition: transform 0.3s ease;
+    }
+
+    .menu-item a:hover,
+    #main-menu ul li a:hover {
+        color: var(--gold);
+    }
+
+    .menu-item a:hover::after,
+    #main-menu ul li a:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Bottom head links */
+    #bottom-head ul {
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    #bottom-head ul li a {
+        color: #cccccc;
+        font-size: 0.9rem;
+    }
+
+    /* Header content box adjustments */
+    #nav-header .content-box {
+        flex-wrap: wrap;
+        flex-direction: row !important;
+        margin-bottom: 0;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* ===========================
+   Tablet Specific
+   =========================== */
+@media only screen and (max-width: 1240px) {
+    #logo {
+        margin: 0 0 2rem 0;
+    }
+
+    #bottom-head ul {
+        justify-content: center;
+    }
+
+    #nav-header .content-box {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ===========================
+   Mobile Specific
+   =========================== */
+@media only screen and (max-width: 830px) {
+    #logo {
+        margin: 0;
+    }
+
+    #logotipia svg {
+        height: 1.8rem;
+    }
+
+    #emblem svg {
+        height: 4rem;
+    }
+
+    #nav-menu {
+        max-width: 400px;
+    }
+
+    #hamburger {
+        height: 2.2rem;
+        width: 2.2rem;
+    }
+}
+
+@media only screen and (max-width: 542px) {
+    #nav-menu {
+        max-width: 100%;
+    }
+
+    #hamburger {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .menu-item a,
+    #main-menu ul li a {
+        font-size: 1.2rem;
+    }
+
+    .menu-item,
+    #main-menu ul li,
+    #bottom-head ul li {
+        margin: 1rem 0;
+    }
+}
+
+/* ===========================
+   Accessibility
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+    #hamburger span,
+    #nav-menu,
+    .overlay,
+    .menu-item {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus states for accessibility */
+#hamburger:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+#main-menu ul li a:focus,
+#bottom-head ul li a:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}

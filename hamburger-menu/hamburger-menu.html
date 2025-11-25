@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Menu - Malik Motorostréning</title>
+
+    <!-- CSS fájlok -->
+    <link rel="stylesheet" href="hamburger-menu.css">
+
+    <!-- CSS változók -->
+    <style>
+        :root {
+            --gold: #C9A961;
+            --body-txt: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+        }
+
+        .content-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header id="nav-header">
+        <div id="page-top" class="content-box">
+            <nav id="main-menu">
+                <!-- Logo -->
+                <div id="logo">
+                    <a href="/">
+                        <div id="emblem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.19 711.43">
+                                <!-- SVG tartalom ide kerül -->
+                                <circle cx="284" cy="355" r="100" fill="#C9A961"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Hamburger Button -->
+                <div id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div id="nav-menu">
+                    <div id="main-menu">
+                        <ul id="menu-main-menu">
+                            <li><a href="/">Főoldal</a></li>
+                            <li><a href="/rolam">Rólam</a></li>
+                            <li><a href="/treningek">Tréningek</a></li>
+                            <li><a href="/velemenyek">Vélemények</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/kapcsolat">Kapcsolat</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="bottom-head">
+                        <ul>
+                            <li><a href="tel:+36301234567">📞 +36 30 123 4567</a></li>
+                            <li><a href="mailto:info@malik.hu">✉️ info@malik.hu</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Demo content -->
+    <main style="padding: 4rem 2rem; color: white; text-align: center;">
+        <h1>Hamburger Menu Demo</h1>
+        <p>Kattints a hamburger menü gombra a navigáció megnyitásához!</p>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="hamburger-menu.js"></script>
+
+</body>
+</html>
