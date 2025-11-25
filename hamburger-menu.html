@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Menu</title>
+    <link rel="stylesheet" href="hamburger-menu.css">
+</head>
+<body>
+    <!-- Hamburger Button -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <svg class="hamburger-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <!-- Top arrow (forms from 2 lines) -->
+            <line class="line line1-left" x1="2.5" y1="7.5" x2="15" y2="7.5" />
+            <line class="line line1-right" x1="15" y1="7.5" x2="27.5" y2="7.5" />
+
+            <!-- Middle arrow (forms from 2 lines) -->
+            <line class="line line2-left" x1="2.5" y1="15" x2="15" y2="15" />
+            <line class="line line2-right" x1="15" y1="15" x2="27.5" y2="15" />
+
+            <!-- Bottom arrow (forms from 2 lines) -->
+            <line class="line line3-left" x1="2.5" y1="22.5" x2="15" y2="22.5" />
+            <line class="line line3-right" x1="15" y1="22.5" x2="27.5" y2="22.5" />
+        </svg>
+    </button>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu" id="main-menu">
+        <ul class="menu">
+            <li class="menu-item"><a href="#home" class="nav-link">Home</a></li>
+            <li class="menu-item"><a href="#about" class="nav-link">About me</a></li>
+            <li class="menu-item"><a href="#training" class="nav-link">Training</a></li>
+            <li class="menu-item"><a href="#vip" class="nav-link">VIP training</a></li>
+            <li class="menu-item"><a href="#blog" class="nav-link">Blog</a></li>
+            <li class="menu-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="hamburger-menu.js"></script>
+</body>
+</html>
