@@ -25,7 +25,7 @@
     gap: 3rem;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Mindig egy sorban maradnak */
 }
 
 /* Counter item */
@@ -149,22 +149,49 @@
    ==================================== */
 @media (max-width: 480px) {
     .mobile-counter {
-        padding: 2rem 1rem;
+        padding: 2rem 0.5rem;
     }
 
     .counter-container {
-        gap: 2.5rem;
-        flex-direction: column;
+        gap: 1.5rem; /* Kisebb gap, hogy férjen el */
+        /* flex-direction: column eltávolítva - mindig sorban maradnak */
     }
 
     .counter-number {
-        font-size: 32px;
-        letter-spacing: 3.2px;
+        font-size: 24px; /* Kisebb betűméret */
+        letter-spacing: 2.4px;
     }
 
     .counter-label {
-        font-size: 14px;
-        letter-spacing: 1.4px;
+        font-size: 12px; /* Kisebb betűméret */
+        letter-spacing: 1.2px;
+    }
+
+    .counter-item {
+        gap: 0.5rem; /* Kisebb gap a szám és címke között */
+    }
+}
+
+/* ====================================
+   NAGYON KICSI KÉPERNYŐK - 360px alatt
+   ==================================== */
+@media (max-width: 360px) {
+    .counter-container {
+        gap: 1rem; /* Még kisebb gap */
+    }
+
+    .counter-number {
+        font-size: 20px; /* Még kisebb betűméret */
+        letter-spacing: 2px;
+    }
+
+    .counter-label {
+        font-size: 10px; /* Még kisebb betűméret */
+        letter-spacing: 1px;
+    }
+
+    .counter-item {
+        gap: 0.3rem;
     }
 }
 
