@@ -62,14 +62,14 @@
         min-height: 600px;
     }
 
-    /* Minden kártya pozicionálása */
+    /* Minden kártya pozicionálása - jobbról indul */
     .training-cards .training-card {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(100%);
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         pointer-events: none;
     }
@@ -82,10 +82,10 @@
         pointer-events: auto;
     }
 
-    /* Jobbról kilépő kártya animáció */
+    /* Balra kilépő kártya animáció */
     .training-cards .training-card.slide-out {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
 }
 
@@ -127,11 +127,11 @@
     }
 }
 
-/* Animáció finomhangolás - smooth slide effect */
-@keyframes slideInFromLeft {
+/* Animáció finomhangolás - smooth slide effect jobbról balra */
+@keyframes slideInFromRight {
     from {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
     to {
         opacity: 1;
@@ -139,13 +139,13 @@
     }
 }
 
-@keyframes slideOutToRight {
+@keyframes slideOutToLeft {
     from {
         opacity: 1;
         transform: translateX(0);
     }
     to {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
 }
