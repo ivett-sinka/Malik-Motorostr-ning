@@ -1,0 +1,112 @@
+<!--
+    GUTENBERG HTML STRUKTÚRA - Rólam szekció számlálóval
+
+    HASZNÁLAT:
+    1. Másold be ezt a HTML-t a Gutenberg "Kód" blokkba
+    2. A <p>"számláló"</p> helyére bekerült a teljes számláló
+    3. A számláló automatikusan átrendezi magát 1320px alatt
+-->
+
+<!-- wp:group {"className":"for-me-section"} -->
+<div class="wp-block-group for-me-section">
+    <!-- wp:columns {"className":"about-columns-wrapper"} -->
+    <div class="wp-block-columns about-columns-wrapper">
+        <!-- wp:column {"className":"my-column-left"} -->
+        <div class="wp-block-column my-column-left">
+            <!-- wp:heading -->
+            <h2 class="wp-block-heading">Tapasztalat, ami számít</h2>
+            <!-- /wp:heading -->
+
+            <!-- wp:paragraph -->
+            <p>Málik László vagyok, 10 éve oktatok, több száz sikeres tanuló áll mögöttem.<br>Az évek során mindent kipróbáltam: enduro, krossz, több ezer kilométer túrázás a Balkánon és Nyugat-Európában, robogózás Délkelet-Ázsiában, és pályamotorozás is.</p>
+            <!-- /wp:paragraph -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"className":"secondary-button"} -->
+                <div class="wp-block-button secondary-button">
+                    <a class="wp-block-button__link wp-element-button">Ismerj meg Jobban &gt;</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+
+            <!-- SZÁMLÁLÓ - Desktop nézetben itt jelenik meg -->
+            <div class="counter-wrapper desktop-counter">
+                <div class="counter-container">
+                    <!-- Counter 1 -->
+                    <div class="counter-item">
+                        <div class="counter-number">
+                            <span class="counter-value" data-target="100">0</span>
+                            <span class="counter-suffix">+</span>
+                        </div>
+                        <div class="counter-label">Elégedett<br>résztvevő</div>
+                    </div>
+
+                    <!-- Counter 2 -->
+                    <div class="counter-item">
+                        <div class="counter-number">
+                            <span class="counter-value" data-target="10">0</span>
+                            <span class="counter-suffix"> év</span>
+                        </div>
+                        <div class="counter-label">Oktatói múlt</div>
+                    </div>
+
+                    <!-- Counter 3 -->
+                    <div class="counter-item">
+                        <div class="counter-number">
+                            <span class="counter-value" data-target="1000">0</span>
+                            <span class="counter-suffix">+</span>
+                        </div>
+                        <div class="counter-label">Óra motorozási<br>tapasztalat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"className":"my-column-right"} -->
+        <div class="wp-block-column my-column-right">
+            <!-- wp:image {"id":50,"sizeSlug":"full","linkDestination":"none"} -->
+            <figure class="wp-block-image size-full">
+                <img src="https://malikmotorosoktatas.hu/wp-content/uploads/MalikL01.jpg" alt="" class="wp-image-50"/>
+            </figure>
+            <!-- /wp:image -->
+        </div>
+        <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+
+    <!-- SZÁMLÁLÓ - 1320px alatt itt jelenik meg középen -->
+    <div class="counter-wrapper mobile-counter">
+        <div class="counter-container">
+            <!-- Counter 1 -->
+            <div class="counter-item">
+                <div class="counter-number">
+                    <span class="counter-value" data-target="100">0</span>
+                    <span class="counter-suffix">+</span>
+                </div>
+                <div class="counter-label">Elégedett<br>résztvevő</div>
+            </div>
+
+            <!-- Counter 2 -->
+            <div class="counter-item">
+                <div class="counter-number">
+                    <span class="counter-value" data-target="10">0</span>
+                    <span class="counter-suffix"> év</span>
+                </div>
+                <div class="counter-label">Oktatói múlt</div>
+            </div>
+
+            <!-- Counter 3 -->
+            <div class="counter-item">
+                <div class="counter-number">
+                    <span class="counter-value" data-target="1000">0</span>
+                    <span class="counter-suffix">+</span>
+                </div>
+                <div class="counter-label">Óra motorozási<br>tapasztalat</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /wp:group -->
