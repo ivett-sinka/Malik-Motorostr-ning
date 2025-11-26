@@ -1,0 +1,151 @@
+/* ====================================
+   RESPONSIVE TABS - 1140px alatt
+   Tréning típusok szekció fül navigáció
+   ==================================== */
+
+/* Tab navigáció elrejtése nagyobb képernyőkön */
+.training-tabs-nav {
+    display: none;
+    gap: 0;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tab gombok */
+.training-tabs-nav .tab-button {
+    flex: 1;
+    padding: 16px 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: var(--txt-p, #424242);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.training-tabs-nav .tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.training-tabs-nav .tab-button.active {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--brown, #8B4513);
+}
+
+.training-tabs-nav .tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--brown, #8B4513);
+}
+
+/* 1140px alatt aktiválódik a tabs funkció */
+@media (max-width: 1140px) {
+    /* Tab navigáció megjelenítése */
+    .training-tabs-nav {
+        display: flex;
+    }
+
+    /* Kártyák konténere */
+    .training-cards {
+        position: relative;
+        overflow: hidden;
+        min-height: 600px;
+    }
+
+    /* Minden kártya pozicionálása */
+    .training-cards .training-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    /* Aktív kártya megjelenítése slide-in animációval */
+    .training-cards .training-card.active {
+        position: relative;
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    /* Jobbról kilépő kártya animáció */
+    .training-cards .training-card.slide-out {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Tablet és kisebb eszközökön */
+@media (max-width: 768px) {
+    .training-card {
+        min-width: 100%;
+        padding: 50px 30px;
+    }
+
+    .training-tabs-nav .tab-button {
+        font-size: 16px;
+        padding: 14px 20px;
+    }
+
+    .training-cards {
+        min-height: 800px;
+    }
+}
+
+/* Mobil eszközökön */
+@media (max-width: 480px) {
+    .training-card {
+        padding: 40px 20px;
+        min-width: 100%;
+    }
+
+    .training-tabs-nav {
+        margin-bottom: 1.5rem;
+    }
+
+    .training-tabs-nav .tab-button {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    .card-price {
+        font-size: 24px;
+    }
+}
+
+/* Animáció finomhangolás - smooth slide effect */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}

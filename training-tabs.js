@@ -1,0 +1,127 @@
+/**
+ * Responsive Training Tabs
+ * Fül navigáció a tréning kártyákhoz 1140px alatt
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Tabs inicializálása
+    function initTrainingTabs() {
+        const tabButtons = document.querySelectorAll('.training-tabs-nav .tab-button');
+        const tabContents = document.querySelectorAll('.training-cards .training-card');
+
+        // Ha nincs tab elem, kilépünk
+        if (tabButtons.length === 0 || tabContents.length === 0) {
+            return;
+        }
+
+        // Tab váltás kezelése
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+
+                // Aktív gomb frissítése
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Tartalom váltása slide animációval
+                tabContents.forEach(content => {
+                    const contentTab = content.getAttribute('data-tab-content');
+
+                    if (contentTab === targetTab) {
+                        // Új tartalom becsúsztatása
+                        setTimeout(() => {
+                            content.classList.add('active');
+                            content.classList.remove('slide-out');
+                        }, 50);
+                    } else {
+                        // Régi tartalom kiúsztatása
+                        content.classList.add('slide-out');
+                        content.classList.remove('active');
+                    }
+                });
+
+                // Scroll a kártyákhoz mobilon (opcionális)
+                if (window.innerWidth <= 1140) {
+                    const cardsContainer = document.querySelector('.training-cards');
+                    if (cardsContainer) {
+                        const offsetTop = cardsContainer.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Első kártya aktív állapotba helyezése
+        if (tabContents.length > 0) {
+            tabContents[0].classList.add('active');
+        }
+    }
+
+    // Inicializálás indítása
+    initTrainingTabs();
+
+    // Window resize kezelése
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Tabs reset nagyobb képernyőn (1140px felett)
+            if (window.innerWidth > 1140) {
+                const tabContents = document.querySelectorAll('.training-cards .training-card');
+                tabContents.forEach(content => {
+                    content.classList.remove('active', 'slide-out');
+                    content.style.position = '';
+                    content.style.opacity = '';
+                    content.style.transform = '';
+                });
+            } else {
+                // Mobilon újra inicializáljuk
+                initTrainingTabs();
+            }
+        }, 250);
+    });
+
+    // Touch swipe support mobilon (opcionális bónusz funkció)
+    if ('ontouchstart' in window) {
+        const cardsContainer = document.querySelector('.training-cards');
+        if (cardsContainer) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            cardsContainer.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            cardsContainer.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold && window.innerWidth <= 1140) {
+                    const tabButtons = document.querySelectorAll('.training-tabs-nav .tab-button');
+                    const activeButton = document.querySelector('.training-tabs-nav .tab-button.active');
+
+                    if (diff > 0) {
+                        // Swipe balra - következő tab
+                        if (activeButton && activeButton.nextElementSibling) {
+                            activeButton.nextElementSibling.click();
+                        }
+                    } else {
+                        // Swipe jobbra - előző tab
+                        if (activeButton && activeButton.previousElementSibling) {
+                            activeButton.previousElementSibling.click();
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
