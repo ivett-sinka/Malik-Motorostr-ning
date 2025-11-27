@@ -1,0 +1,46 @@
+/* ====================================
+   RESPONSIVE TABS - 1140px alatt (JAVÍTOTT)
+   Tréning típusok szekció fül navigáció
+   ==================================== */
+
+@media only screen and (max-width: 1140px) {
+
+    /* Tab navigáció megjelenítése */
+    .training-tabs-nav {
+        display: flex;
+    }
+
+    /* Kártyák konténere */
+    .training-cards {
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        /* min-height eltávolítva - automatikusan igazodik az aktív kártya magasságához */
+    }
+
+    /* Minden kártya pozicionálása - jobbról indul */
+    .training-cards .training-card {
+        position: absolute;  /* ← JAVÍTVA: absolute (nem static!) */
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    /* Aktív kártya megjelenítése slide-in animációval */
+    .training-cards .training-card.active {
+        position: static;  /* ← JAVÍTVA: static (nem relative!) */
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    /* Jobbról kilépő kártya animáció */
+    .training-cards .training-card.slide-out {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
