@@ -5,6 +5,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Dinamikus magasság beállítása
+    function updateContainerHeight() {
+        if (window.innerWidth <= 1140) {
+            const activeCard = document.querySelector('.training-cards .training-card.active');
+            const container = document.querySelector('.training-cards');
+
+            if (activeCard && container) {
+                const cardHeight = activeCard.offsetHeight;
+                container.style.minHeight = cardHeight + 'px';
+            }
+        }
+    }
+
     // Tabs inicializálása
     function initTrainingTabs() {
         const tabButtons = document.querySelectorAll('.training-tabs-nav .tab-button');
@@ -33,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         setTimeout(() => {
                             content.classList.add('active');
                             content.classList.remove('slide-out');
+
+                            // Magasság frissítése az új tartalomhoz
+                            updateContainerHeight();
                         }, 50);
                     } else {
                         // Régi tartalom eltüntetése
@@ -46,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Első kártya aktív állapotba helyezése
         if (tabContents.length > 0) {
             tabContents[0].classList.add('active');
+            // Kezdeti magasság beállítása
+            setTimeout(updateContainerHeight, 100);
         }
     }
 
@@ -60,15 +78,23 @@ document.addEventListener('DOMContentLoaded', function() {
             // Tabs reset nagyobb képernyőn (1140px felett)
             if (window.innerWidth > 1140) {
                 const tabContents = document.querySelectorAll('.training-cards .training-card');
+                const container = document.querySelector('.training-cards');
+
                 tabContents.forEach(content => {
                     content.classList.remove('active', 'slide-out');
                     content.style.position = '';
                     content.style.opacity = '';
                     content.style.transform = '';
                 });
+
+                // Konténer magasság reset
+                if (container) {
+                    container.style.minHeight = '';
+                }
             } else {
-                // Mobilon újra inicializáljuk
+                // Mobilon újra inicializáljuk és frissítjük a magasságot
                 initTrainingTabs();
+                updateContainerHeight();
             }
         }, 250);
     });
