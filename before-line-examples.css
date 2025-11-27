@@ -1,0 +1,341 @@
+/* ===================================
+   Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+.example-section {
+    margin-bottom: 50px;
+}
+
+.example-section > h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #666;
+    font-family: 'Courier New', monospace;
+}
+
+.box {
+    background-color: #ffffff;
+    padding: 30px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.box p {
+    color: #666;
+}
+
+/* ===================================
+   1. Vonal balról az elem elejéig
+   =================================== */
+
+.line-left {
+    position: relative;
+    padding-left: 80px; /* Hely a vonalnak */
+}
+
+.line-left::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px; /* Vonal hossza */
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   2. Vonal jobbról az elem végéig
+   =================================== */
+
+.line-right {
+    position: relative;
+    padding-right: 80px; /* Hely a vonalnak */
+}
+
+.line-right::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px; /* Vonal hossza */
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   3. Vonal mindkét oldalról
+   =================================== */
+
+.line-both {
+    position: relative;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.line-both::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #ff6600;
+}
+
+.line-both::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   4. Teljes széles vonal (padding alatt)
+   =================================== */
+
+.line-full-under {
+    position: relative;
+    padding-bottom: 20px; /* Hely a vonalnak */
+}
+
+.line-full-under::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -30px; /* Negatív margin: box padding = 30px */
+    right: -30px; /* Padding széléig terjed */
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   5. Teljes széles vonal (padding felett)
+   =================================== */
+
+.line-full-above {
+    position: relative;
+    padding-top: 20px; /* Hely a vonalnak */
+}
+
+.line-full-above::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -30px; /* Box padding kompenzálása */
+    right: -30px;
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   6. Flexbox megoldás - kitölti a teret
+   =================================== */
+
+.line-flex {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.line-flex::before {
+    content: '';
+    flex: 1; /* Auto kitöltés! */
+    height: 3px;
+    background-color: #ff6600;
+    order: -1; /* Vonal előre */
+}
+
+/* Ha jobbra akarod a vonalat: */
+/* .line-flex::before {
+    order: 1;
+} */
+
+/* ===================================
+   7. Grid megoldás - külön oszlop
+   =================================== */
+
+.line-grid {
+    display: grid;
+    grid-template-columns: 1fr auto; /* Vonal | Szöveg */
+    align-items: center;
+    gap: 20px;
+}
+
+.line-grid::before {
+    content: '';
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* Ha jobbra akarod: grid-template-columns: auto 1fr; */
+
+/* ===================================
+   8. Percentage alapú szélesség
+   =================================== */
+
+.line-percentage {
+    position: relative;
+    padding-left: 120px; /* Hely a vonalnak */
+}
+
+.line-percentage::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15%; /* Szülő elem szélességének 15%-a */
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   9. Calc() - pontos padding széléig
+   =================================== */
+
+.box-calc {
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.line-calc {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.line-calc::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+
+    /* Vonal a bal padding széléig */
+    left: -30px; /* -1 * box padding */
+
+    /* Szélesség: elem szélessége + 2 * padding */
+    width: calc(100% + 60px); /* 100% + (30px * 2) */
+
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   10. CSS Variables - dinamikus
+   =================================== */
+
+.box-vars {
+    position: relative;
+    --box-padding: 30px; /* Default érték */
+    padding: var(--box-padding);
+}
+
+.line-vars {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.line-vars::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+
+    /* Bal padding széléig */
+    left: calc(-1 * var(--box-padding));
+
+    /* Szélesség: elem + 2 * padding */
+    width: calc(100% + (2 * var(--box-padding)));
+
+    height: 3px;
+    background-color: #ff6600;
+}
+
+/* ===================================
+   Responsive Adjustments
+   =================================== */
+
+@media (max-width: 768px) {
+    .box {
+        padding: 20px;
+    }
+
+    .line-full-under::before,
+    .line-full-above::before {
+        left: -20px;
+        right: -20px;
+    }
+
+    .line-calc::before {
+        left: -20px;
+        width: calc(100% + 40px);
+    }
+
+    .box-vars {
+        --box-padding: 20px;
+    }
+}
+
+/* ===================================
+   Utility: Hozzáadható bármely elemhez
+   =================================== */
+
+/* Univerzális megoldás - használd data-attribútummal */
+[data-line-before] {
+    position: relative;
+}
+
+[data-line-before]::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--container-padding, 30px));
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--line-width, 60px);
+    height: var(--line-height, 3px);
+    background-color: var(--line-color, #ff6600);
+}
+
+/* Használat:
+<h3 data-line-before style="--line-width: 80px; --line-color: blue;">
+    Heading
+</h3>
+*/
