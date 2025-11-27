@@ -18,6 +18,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Képek betöltésének figyelése
+    function watchImagesLoad() {
+        const images = document.querySelectorAll('.training-cards img');
+
+        images.forEach(img => {
+            // Ha a kép már betöltött
+            if (img.complete) {
+                updateContainerHeight();
+            } else {
+                // Ha még nem töltött be, figyeljük
+                img.addEventListener('load', () => {
+                    updateContainerHeight();
+                });
+            }
+        });
+    }
+
     // Tabs inicializálása
     function initTrainingTabs() {
         const tabButtons = document.querySelectorAll('.training-tabs-nav .tab-button');
@@ -49,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             // Magasság frissítése az új tartalomhoz
                             updateContainerHeight();
+                            watchImagesLoad();
                         }, 50);
                     } else {
                         // Régi tartalom eltüntetése
@@ -63,7 +81,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tabContents.length > 0) {
             tabContents[0].classList.add('active');
             // Kezdeti magasság beállítása
-            setTimeout(updateContainerHeight, 100);
+            setTimeout(() => {
+                updateContainerHeight();
+                watchImagesLoad();
+            }, 100);
         }
     }
 
