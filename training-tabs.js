@@ -13,26 +13,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (activeCard && container) {
                 const cardHeight = activeCard.offsetHeight;
-                container.style.minHeight = cardHeight + 'px';
+                const currentHeight = parseInt(container.style.minHeight) || 0;
+
+                // Csak akkor frissítünk, ha változott a magasság
+                if (Math.abs(cardHeight - currentHeight) > 5) {
+                    container.style.minHeight = cardHeight + 'px';
+                }
             }
         }
     }
 
-    // Képek betöltésének figyelése
-    function watchImagesLoad() {
-        const images = document.querySelectorAll('.training-cards img');
+    // Periodikus magasság ellenőrzés (fallback lazy loading képekhez)
+    let heightCheckInterval = null;
 
-        images.forEach(img => {
-            // Ha a kép már betöltött
-            if (img.complete) {
+    function startHeightCheck() {
+        // Töröljük az előző intervalt, ha van
+        if (heightCheckInterval) {
+            clearInterval(heightCheckInterval);
+        }
+
+        if (window.innerWidth <= 1140) {
+            // Első 30 másodpercben gyakrabban ellenőriz (lazy loading képek miatt)
+            let checkCount = 0;
+            const maxChecks = 60; // 30 másodperc (500ms × 60)
+
+            heightCheckInterval = setInterval(() => {
                 updateContainerHeight();
-            } else {
-                // Ha még nem töltött be, figyeljük
-                img.addEventListener('load', () => {
-                    updateContainerHeight();
-                });
-            }
-        });
+                checkCount++;
+
+                // 30 mp után ritkábban ellenőriz
+                if (checkCount >= maxChecks) {
+                    clearInterval(heightCheckInterval);
+                    // Utána 5 másodpercenként
+                    heightCheckInterval = setInterval(updateContainerHeight, 5000);
+                }
+            }, 500); // 500ms-enként az első 30 mp-ben
+        }
+    }
+
+    function stopHeightCheck() {
+        if (heightCheckInterval) {
+            clearInterval(heightCheckInterval);
+            heightCheckInterval = null;
+        }
     }
 
     // Tabs inicializálása
@@ -64,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             content.classList.add('active');
                             content.classList.remove('slide-out');
 
-                            // Magasság frissítése az új tartalomhoz
+                            // Magasság frissítése és folyamatos ellenőrzés indítása
                             updateContainerHeight();
-                            watchImagesLoad();
+                            startHeightCheck();
                         }, 50);
                     } else {
                         // Régi tartalom eltüntetése
@@ -80,10 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Első kártya aktív állapotba helyezése
         if (tabContents.length > 0) {
             tabContents[0].classList.add('active');
-            // Kezdeti magasság beállítása
+            // Kezdeti magasság beállítása és folyamatos ellenőrzés
             setTimeout(() => {
                 updateContainerHeight();
-                watchImagesLoad();
+                startHeightCheck();
             }, 100);
         }
     }
@@ -108,14 +131,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     content.style.transform = '';
                 });
 
-                // Konténer magasság reset
+                // Konténer magasság reset és ellenőrzés leállítása
                 if (container) {
                     container.style.minHeight = '';
                 }
+                stopHeightCheck();
             } else {
-                // Mobilon újra inicializáljuk és frissítjük a magasságot
+                // Mobilon újra inicializáljuk és ellenőrzés indítása
                 initTrainingTabs();
                 updateContainerHeight();
+                startHeightCheck();
             }
         }, 250);
     });
