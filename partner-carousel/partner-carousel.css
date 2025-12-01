@@ -72,6 +72,12 @@
 
         /* Animation: slide from right to left */
         animation: scroll-left 20s linear infinite;
+
+        /* Touch interaction */
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: pan-y; /* Allow vertical scrolling */
     }
 
     /* Partner icons in carousel */
@@ -84,6 +90,12 @@
     /* Pause animation on hover */
     .partnerek-sor:hover .carousel-track {
         animation-play-state: paused;
+    }
+
+    /* Pause animation when dragging (touch) */
+    .carousel-track.dragging {
+        animation-play-state: paused !important;
+        cursor: grabbing;
     }
 
     /* Individual icon hover effect */

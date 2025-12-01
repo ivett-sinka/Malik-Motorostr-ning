@@ -29,6 +29,8 @@ Ez a megoldás egy szalagszerű (marquee/carousel) animációt hoz létre a part
 - ✅ Folyamatos jobbról-balra csúszás
 - ✅ Seamless loop (végtelen körforgás)
 - ✅ Hover-re megáll az animáció
+- ✅ **Ujjal (érintéssel) húzható jobbra-balra**
+- ✅ Touch közben megáll az automatikus mozgás
 - ✅ Gradient fade-out a széleken
 - ✅ Responsive és smooth
 
@@ -39,6 +41,7 @@ Ez a megoldás egy szalagszerű (marquee/carousel) animációt hoz létre a part
 - 📱 **Reszponzív**: Desktop-on normál, mobil-on carousel
 - 🎬 **Smooth animáció**: CSS3 animációval, GPU gyorsítva
 - ⏸️ **Hover pause**: Egérrel rájuk mutatva megáll
+- 👆 **Touch/Swipe támogatás**: Ujjal húzható jobbra-balra, mozgatás közben megáll
 - ♾️ **Végtelen loop**: JavaScript duplikálja az elemeket
 - 🎨 **Grayscale effekt**: Normál állapotban halványabb, hover-re színes
 - ♿ **Accessibility**: Tiszteletben tartja a `prefers-reduced-motion` beállítást
@@ -216,6 +219,22 @@ const CONFIG = {
 │              ↑ Megáll                │
 └──────────────────────────────────────┘
 ```
+
+### Touch/Swipe (Mobil)
+
+```
+┌──────────────────────────────────────┐
+│  👆 [Icon1][Icon2][Icon3]            │
+│     ↑ Ujjal húzható jobbra/balra     │
+│       Mozgatás közben megáll         │
+└──────────────────────────────────────┘
+```
+
+**Működés:**
+1. **Érintsd meg** a carousel-t ujjaddal
+2. **Húzd** jobbra vagy balra
+3. Az animáció **megáll** amíg húzod
+4. **Engedd el** és az animáció folytatódik
 
 ---
 
@@ -406,6 +425,11 @@ partner-carousel/
 
 ## 🔄 Frissítések
 
+### v1.1.0 (2025-12-01)
+- ✅ **ÚJ:** Touch/Swipe támogatás hozzáadva
+- ✅ Ujjal húzható carousel mobil eszközökön
+- ✅ Touch közben automatikus animáció megállítás
+
 ### v1.0.0 (2025-12-01)
 - ✅ Első verzió
 - ✅ Reszponzív carousel
@@ -432,7 +456,7 @@ Ezt a kódot szabadon használhatod és módosíthatod a projektedben.
 ---
 
 **Készítette:** Claude
-**Verzió:** 1.0.0
+**Verzió:** 1.1.0
 **Utolsó frissítés:** 2025-12-01
 
 **Sok sikert a használathoz! 🚀**
