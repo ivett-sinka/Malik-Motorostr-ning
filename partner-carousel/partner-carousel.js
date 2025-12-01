@@ -19,6 +19,9 @@
     let isInitialized = false;
     let carouselContainer = null;
     let originalIcons = [];
+    let animationFrameId = null;
+    let currentPosition = 0;
+    let animationSpeed = 0.5; // pixels per frame
 
     // Touch state for swipe gestures
     let touchState = {
@@ -28,6 +31,9 @@
         currentOffset: 0,
         track: null
     };
+
+    // Hover state
+    let isHovering = false;
 
     /**
      * Initialize the carousel
@@ -82,6 +88,40 @@
     }
 
     /**
+     * Animation loop for continuous scrolling
+     */
+    function animate() {
+        if (!isInitialized) {
+            animationFrameId = requestAnimationFrame(animate);
+            return;
+        }
+
+        const track = carouselContainer.querySelector('.carousel-track');
+        if (!track) {
+            animationFrameId = requestAnimationFrame(animate);
+            return;
+        }
+
+        // Only move if not dragging and not hovering
+        if (!touchState.isDragging && !isHovering) {
+            // Move left continuously
+            currentPosition -= animationSpeed;
+
+            // Get track width (half of it, because we duplicated content)
+            const trackWidth = track.offsetWidth / (CONFIG.duplicateCount + 1);
+
+            // Reset position for seamless loop
+            if (Math.abs(currentPosition) >= trackWidth) {
+                currentPosition = 0;
+            }
+
+            track.style.transform = `translateX(${currentPosition}px)`;
+        }
+
+        animationFrameId = requestAnimationFrame(animate);
+    }
+
+    /**
      * Initialize mobile carousel
      */
     function initMobileCarousel() {
@@ -119,9 +159,21 @@
         carouselContainer.addEventListener('touchend', handleTouchEnd);
         carouselContainer.addEventListener('touchcancel', handleTouchEnd);
 
+        // Add hover event listeners for desktop
+        carouselContainer.addEventListener('mouseenter', function() {
+            isHovering = true;
+        });
+        carouselContainer.addEventListener('mouseleave', function() {
+            isHovering = false;
+        });
+
         // Mark as initialized
         carouselContainer.classList.add('carousel-initialized');
         isInitialized = true;
+
+        // Start animation loop
+        currentPosition = 0;
+        animate();
 
         console.log('Mobile carousel initialized with', track.children.length, 'items');
     }
@@ -140,10 +192,10 @@
         touchState.currentOffset = 0;
         touchState.track = track;
 
-        // Add dragging class to pause animation
+        // Add dragging class (visual feedback)
         track.classList.add('dragging');
 
-        console.log('Touch start at:', touchState.startX);
+        console.log('Touch start at:', touchState.startX, 'Current position:', currentPosition);
     }
 
     /**
@@ -155,40 +207,40 @@
         touchState.currentX = e.touches[0].clientX;
         touchState.currentOffset = touchState.currentX - touchState.startX;
 
-        // Update transform - directly set translateX
+        // Update transform - add offset to current animation position
         if (touchState.track) {
-            touchState.track.style.transform = `translateX(${touchState.currentOffset}px)`;
+            touchState.track.style.transform = `translateX(${currentPosition + touchState.currentOffset}px)`;
         }
 
         // Only prevent default if horizontal swipe is significant
         if (Math.abs(touchState.currentOffset) > 10) {
             e.preventDefault();
         }
-
-        console.log('Touch move, offset:', touchState.currentOffset);
     }
 
     /**
-     * Handle touch end - resume animation
+     * Handle touch end - resume animation from current position
      */
     function handleTouchEnd() {
         if (!touchState.isDragging) return;
 
-        console.log('Touch end, total offset was:', touchState.currentOffset);
+        console.log('Touch end, offset was:', touchState.currentOffset, 'Resuming from:', currentPosition + touchState.currentOffset);
+
+        // Update current position with the drag offset
+        currentPosition += touchState.currentOffset;
 
         touchState.isDragging = false;
 
         if (touchState.track) {
-            // Remove dragging class to resume animation
+            // Remove dragging class
             touchState.track.classList.remove('dragging');
-
-            // Remove inline transform to let CSS animation take over
-            touchState.track.style.transform = '';
         }
 
-        // Reset touch state
+        // Reset touch offset (position is already updated in currentPosition)
         touchState.currentOffset = 0;
         touchState.track = null;
+
+        // Animation will continue from updated currentPosition
     }
 
     /**
@@ -198,6 +250,12 @@
         if (!isInitialized) return;
 
         console.log('Destroying mobile carousel...');
+
+        // Stop animation loop
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
 
         // Remove touch event listeners
         if (carouselContainer) {
@@ -218,6 +276,7 @@
         // Remove initialized class
         carouselContainer.classList.remove('carousel-initialized');
         isInitialized = false;
+        currentPosition = 0;
 
         console.log('Mobile carousel destroyed');
     }

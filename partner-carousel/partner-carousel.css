@@ -70,8 +70,7 @@
         align-items: center;
         width: max-content;
 
-        /* Animation: slide from right to left */
-        animation: scroll-left 20s linear infinite;
+        /* No CSS animation - handled by JavaScript */
 
         /* Touch interaction */
         cursor: grab;
@@ -88,14 +87,8 @@
         transition: transform 0.3s ease;
     }
 
-    /* Pause animation on hover */
-    .partnerek-sor:hover .carousel-track {
-        animation-play-state: paused;
-    }
-
-    /* Disable animation completely when dragging (touch) */
+    /* Visual feedback when dragging (touch) */
     .carousel-track.dragging {
-        animation: none !important;
         cursor: grabbing;
     }
 
@@ -118,27 +111,12 @@
     .carousel-track .partner-icon:hover img {
         filter: grayscale(0%);
     }
-
-    /* Keyframe animation: scroll from right to left */
-    @keyframes scroll-left {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }
 }
 
 /* ===========================
    Extra Small Devices (Below 480px)
    =========================== */
 @media only screen and (max-width: 480px) {
-
-    /* Faster animation on smaller screens */
-    .carousel-track {
-        animation-duration: 15s;
-    }
 
     /* Smaller icons on mobile */
     .carousel-track .partner-icon img {
@@ -157,18 +135,10 @@
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .carousel-track {
-        animation: none !important;
-    }
-
     .partnerek-sor {
         overflow-x: auto;
         -webkit-mask-image: none;
         mask-image: none;
-    }
-
-    .carousel-track {
-        animation: none;
     }
 }
 
