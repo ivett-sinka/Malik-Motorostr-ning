@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Carousel - Demo</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="partner-carousel.css">
+
+    <!-- Basic page styling -->
+    <style>
+        :root {
+            --gold: #C9A961;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .resize-note {
+            text-align: center;
+            background: var(--gold);
+            color: #1a1a1a;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        /* Placeholder images styling */
+        .partner-icon img {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-box {
+            background: rgba(201, 169, 97, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .resize-note {
+                background: #4CAF50;
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🎠 Partner Carousel Demo</h1>
+
+        <p class="instructions">
+            Desktop nézetben: Normál elrendezés<br>
+            <strong>Mobil nézetben (≤768px): Szalagszerű animáció</strong>
+        </p>
+
+        <div class="resize-note">
+            📱 Méretezd át az ablakot 768px alá, hogy lásd az animációt!
+        </div>
+
+        <div class="info-box">
+            <h3>🎯 Funkciók:</h3>
+            <ul>
+                <li>Folyamatos jobbról-balra csúszás mobil nézetben</li>
+                <li>Hover-re megáll az animáció</li>
+                <li>Végtelen loop (seamless)</li>
+                <li>Gradient fade-out a széleken</li>
+                <li>Grayscale → színes hover effekt</li>
+                <li>GPU gyorsított, smooth animáció</li>
+            </ul>
+        </div>
+
+        <!-- DEMO CAROUSEL -->
+        <div class="demo-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--gold);">Partner Ikonok</h2>
+
+            <!-- YOUR ORIGINAL HTML STRUCTURE -->
+            <div class="partnerek-sor">
+
+                <div class="partner-icon tooltip-wrapper tooltip-one">
+                    <img width="150" src="https://via.placeholder.com/150x80/C9A961/FFFFFF?text=Partner+1" alt="Partner 1">
+                </div>
+
+                <div class="partner-icon tooltip-wrapper tooltip-two">
+                    <img width="150" src="https://via.placeholder.com/150x80/C9A961/FFFFFF?text=Partner+2" alt="Partner 2">
+                </div>
+
+                <div class="partner-icon tooltip-wrapper tooltip-three">
+                    <img width="150" src="https://via.placeholder.com/150x80/C9A961/FFFFFF?text=Partner+3" alt="Partner 3">
+                </div>
+
+                <!-- Extra partnerek (optional) -->
+                <div class="partner-icon">
+                    <img width="150" src="https://via.placeholder.com/150x80/C9A961/FFFFFF?text=Partner+4" alt="Partner 4">
+                </div>
+
+                <div class="partner-icon">
+                    <img width="150" src="https://via.placeholder.com/150x80/C9A961/FFFFFF?text=Partner+5" alt="Partner 5">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="info-box">
+            <h3>🖱️ Használat:</h3>
+            <ul>
+                <li><strong>Desktop (>768px):</strong> Normál flex layout, középre igazítva</li>
+                <li><strong>Mobile (≤768px):</strong> Automatikus carousel animáció</li>
+                <li><strong>Hover:</strong> Mozgasd az egeret az ikonra → animáció megáll</li>
+                <li><strong>Scroll:</strong> Az animáció folytatódik, amikor elveszed az egeret</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>⚙️ Testreszabás:</h3>
+            <ul>
+                <li>Animáció sebessége: <code>partner-carousel.css</code> → <code>animation-duration</code></li>
+                <li>Breakpoint: <code>partner-carousel.js</code> → <code>CONFIG.breakpoint</code></li>
+                <li>Ikon távolság: <code>.carousel-track .partner-icon { margin: 0 2rem; }</code></li>
+                <li>Gradient szélesség: <code>.partnerek-sor::before { width: 100px; }</code></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p style="margin-bottom: 1rem;">
+                <strong>WordPress Integráció:</strong>
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">
+                Töltsd be a CSS és JS fájlokat a <code>functions.php</code>-ban<br>
+                Részletek: <code>README.md</code>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="partner-carousel.js"></script>
+
+    <!-- Demo info script -->
+    <script>
+        // Show current viewport width
+        function showViewportWidth() {
+            const width = window.innerWidth;
+            const isMobile = width <= 768;
+            console.log(`Viewport width: ${width}px - ${isMobile ? 'MOBILE MODE 📱' : 'DESKTOP MODE 🖥️'}`);
+        }
+
+        showViewportWidth();
+        window.addEventListener('resize', showViewportWidth);
+
+        // Log carousel events
+        console.log('%c🎠 Partner Carousel Demo Loaded', 'color: #C9A961; font-size: 16px; font-weight: bold;');
+        console.log('%c📏 Resize the window to see the carousel animation below 768px', 'color: #4CAF50; font-size: 12px;');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+/**
+ * Partner Carousel Animation
+ * Responsive carousel with sliding animation below 768px
+ * Pauses on hover
+ */
+
+/* ===========================
+   Desktop View (Above 768px)
+   =========================== */
+.partnerek-sor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.partner-icon {
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.partner-icon:hover {
+    transform: scale(1.1);
+}
+
+.partner-icon img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===========================
+   Mobile Carousel (Below 768px)
+   =========================== */
+@media only screen and (max-width: 768px) {
+
+    /* Container styling */
+    .partnerek-sor {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: 3rem 0;
+        display: block;
+
+        /* Remove default gap since we're using animation */
+        gap: 0;
+
+        /* Gradient masks for smooth fade effect */
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+        );
+    }
+
+    /* Carousel track wrapper */
+    .carousel-track {
+        display: flex;
+        align-items: center;
+        width: max-content;
+
+        /* Animation: slide from right to left */
+        animation: scroll-left 20s linear infinite;
+    }
+
+    /* Partner icons in carousel */
+    .carousel-track .partner-icon {
+        flex-shrink: 0;
+        margin: 0 2rem;
+        transition: transform 0.3s ease;
+    }
+
+    /* Pause animation on hover */
+    .partnerek-sor:hover .carousel-track {
+        animation-play-state: paused;
+    }
+
+    /* Individual icon hover effect */
+    .carousel-track .partner-icon:hover {
+        transform: scale(1.15);
+        z-index: 10;
+    }
+
+    /* Ensure images are properly sized */
+    .carousel-track .partner-icon img {
+        display: block;
+        width: 150px;
+        height: auto;
+        filter: grayscale(20%);
+        transition: filter 0.3s ease;
+    }
+
+    /* On hover, make image fully colored */
+    .carousel-track .partner-icon:hover img {
+        filter: grayscale(0%);
+    }
+
+    /* Keyframe animation: scroll from right to left */
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+/* ===========================
+   Extra Small Devices (Below 480px)
+   =========================== */
+@media only screen and (max-width: 480px) {
+
+    /* Faster animation on smaller screens */
+    .carousel-track {
+        animation-duration: 15s;
+    }
+
+    /* Smaller icons on mobile */
+    .carousel-track .partner-icon img {
+        width: 120px;
+    }
+
+    /* Reduce margins for tighter spacing */
+    .carousel-track .partner-icon {
+        margin: 0 1.5rem;
+    }
+}
+
+/* ===========================
+   Accessibility
+   =========================== */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        animation: none !important;
+    }
+
+    .partnerek-sor {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .carousel-track {
+        animation: none;
+    }
+}
+
+/* ===========================
+   Loading State
+   =========================== */
+
+/* Before JavaScript loads, hide the duplicates */
+.partnerek-sor:not(.carousel-initialized) .partner-icon.duplicate {
+    display: none;
+}
+
+/* After initialization, show everything */
+.partnerek-sor.carousel-initialized {
+    /* Carousel is ready */
+}
+
+/* ===========================
+   Optional: Gradient Overlays
+   =========================== */
+
+/* Add subtle gradient overlays for premium look */
+@media only screen and (max-width: 768px) {
+    .partnerek-sor::before,
+    .partnerek-sor::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .partnerek-sor::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 1), transparent);
+    }
+
+    .partnerek-sor::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 1), transparent);
+    }
+
+    /* Dark theme support */
+    @media (prefers-color-scheme: dark) {
+        .partnerek-sor::before {
+            background: linear-gradient(to right, rgba(26, 26, 26, 1), transparent);
+        }
+
+        .partnerek-sor::after {
+            background: linear-gradient(to left, rgba(26, 26, 26, 1), transparent);
+        }
+    }
+}
+
+/* ===========================
+   Tooltip Support
+   =========================== */
+
+/* Ensure tooltips work with the carousel */
+.tooltip-wrapper {
+    position: relative;
+}
+
+/* Hide tooltips during animation to prevent visual clutter */
+@media only screen and (max-width: 768px) {
+    .carousel-track:not(:hover) .tooltip-wrapper::before,
+    .carousel-track:not(:hover) .tooltip-wrapper::after {
+        display: none;
+    }
+}
