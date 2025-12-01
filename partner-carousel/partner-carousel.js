@@ -25,7 +25,7 @@
         isDragging: false,
         startX: 0,
         currentX: 0,
-        startTransform: 0,
+        currentOffset: 0,
         track: null
     };
 
@@ -137,15 +137,13 @@
 
         touchState.isDragging = true;
         touchState.startX = e.touches[0].clientX;
+        touchState.currentOffset = 0;
         touchState.track = track;
-
-        // Get current transform value
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrix(style.transform);
-        touchState.startTransform = matrix.m41; // translateX value
 
         // Add dragging class to pause animation
         track.classList.add('dragging');
+
+        console.log('Touch start at:', touchState.startX);
     }
 
     /**
@@ -154,16 +152,20 @@
     function handleTouchMove(e) {
         if (!touchState.isDragging || window.innerWidth > CONFIG.breakpoint) return;
 
-        // Prevent default scrolling
-        e.preventDefault();
-
         touchState.currentX = e.touches[0].clientX;
-        const diff = touchState.currentX - touchState.startX;
+        touchState.currentOffset = touchState.currentX - touchState.startX;
 
-        // Update transform based on swipe
+        // Update transform - directly set translateX
         if (touchState.track) {
-            touchState.track.style.transform = `translateX(${touchState.startTransform + diff}px)`;
+            touchState.track.style.transform = `translateX(${touchState.currentOffset}px)`;
         }
+
+        // Only prevent default if horizontal swipe is significant
+        if (Math.abs(touchState.currentOffset) > 10) {
+            e.preventDefault();
+        }
+
+        console.log('Touch move, offset:', touchState.currentOffset);
     }
 
     /**
@@ -172,22 +174,20 @@
     function handleTouchEnd() {
         if (!touchState.isDragging) return;
 
+        console.log('Touch end, total offset was:', touchState.currentOffset);
+
         touchState.isDragging = false;
 
         if (touchState.track) {
             // Remove dragging class to resume animation
             touchState.track.classList.remove('dragging');
 
-            // Reset inline transform to let CSS animation take over
-            // We'll let the animation continue from where it was
-            setTimeout(() => {
-                if (touchState.track) {
-                    touchState.track.style.transform = '';
-                }
-            }, 50);
+            // Remove inline transform to let CSS animation take over
+            touchState.track.style.transform = '';
         }
 
         // Reset touch state
+        touchState.currentOffset = 0;
         touchState.track = null;
     }
 
