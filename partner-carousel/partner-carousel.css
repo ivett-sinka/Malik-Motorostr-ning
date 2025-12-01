@@ -1,11 +1,11 @@
 /**
  * Partner Carousel Animation
- * Responsive carousel with sliding animation below 768px
- * Pauses on hover
+ * Responsive carousel with sliding animation below 860px
+ * Pauses on hover and touch
  */
 
 /* ===========================
-   Desktop View (Above 768px)
+   Desktop View (Above 860px)
    =========================== */
 .partnerek-sor {
     display: flex;
@@ -32,9 +32,9 @@
 }
 
 /* ===========================
-   Mobile Carousel (Below 768px)
+   Mobile Carousel (Below 860px)
    =========================== */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
 
     /* Container styling */
     .partnerek-sor {
@@ -161,7 +161,7 @@
    =========================== */
 
 /* Add subtle gradient overlays for premium look */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
     .partnerek-sor::before,
     .partnerek-sor::after {
         content: '';
@@ -205,7 +205,7 @@
 }
 
 /* Hide tooltips during animation to prevent visual clutter */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
     .carousel-track:not(:hover) .tooltip-wrapper::before,
     .carousel-track:not(:hover) .tooltip-wrapper::after {
         display: none;

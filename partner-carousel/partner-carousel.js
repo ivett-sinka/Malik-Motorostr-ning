@@ -9,7 +9,7 @@
 
     // Configuration
     const CONFIG = {
-        breakpoint: 768,           // Mobile breakpoint in pixels
+        breakpoint: 860,           // Mobile breakpoint in pixels
         duplicateCount: 2,         // How many times to duplicate the content
         containerSelector: '.partnerek-sor',
         iconSelector: '.partner-icon'

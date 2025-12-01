@@ -111,7 +111,7 @@
             font-weight: bold;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
             .resize-note {
                 background: #4CAF50;
                 animation: pulse 2s infinite;
@@ -132,11 +132,11 @@
 
         <p class="instructions">
             Desktop nézetben: Normál elrendezés<br>
-            <strong>Mobil nézetben (≤768px): Szalagszerű animáció</strong>
+            <strong>Mobil nézetben (≤860px): Szalagszerű animáció</strong>
         </p>
 
         <div class="resize-note">
-            📱 Méretezd át az ablakot 768px alá, hogy lásd az animációt!
+            📱 Méretezd át az ablakot 860px alá, hogy lásd az animációt!
         </div>
 
         <div class="info-box">
@@ -186,8 +186,8 @@
         <div class="info-box">
             <h3>🖱️ Használat:</h3>
             <ul>
-                <li><strong>Desktop (>768px):</strong> Normál flex layout, középre igazítva</li>
-                <li><strong>Mobile (≤768px):</strong> Automatikus carousel animáció</li>
+                <li><strong>Desktop (>860px):</strong> Normál flex layout, középre igazítva</li>
+                <li><strong>Mobile (≤860px):</strong> Automatikus carousel animáció</li>
                 <li><strong>Hover:</strong> Mozgasd az egeret az ikonra → animáció megáll</li>
                 <li><strong>Scroll:</strong> Az animáció folytatódik, amikor elveszed az egeret</li>
             </ul>
@@ -223,7 +223,7 @@
         // Show current viewport width
         function showViewportWidth() {
             const width = window.innerWidth;
-            const isMobile = width <= 768;
+            const isMobile = width <= 860;
             console.log(`Viewport width: ${width}px - ${isMobile ? 'MOBILE MODE 📱' : 'DESKTOP MODE 🖥️'}`);
         }
 
@@ -232,7 +232,7 @@
 
         // Log carousel events
         console.log('%c🎠 Partner Carousel Demo Loaded', 'color: #C9A961; font-size: 16px; font-weight: bold;');
-        console.log('%c📏 Resize the window to see the carousel animation below 768px', 'color: #4CAF50; font-size: 12px;');
+        console.log('%c📏 Resize the window to see the carousel animation below 860px', 'color: #4CAF50; font-size: 12px;');
     </script>
 
 </body>

@@ -1,6 +1,6 @@
 # 🎠 Partner Carousel - Szalagszerű Partner Ikon Animáció
 
-Reszponzív partner ikon carousel, amely 768px alatt jobbról balra csúszó animációval működik, és hover-re megáll.
+Reszponzív partner ikon carousel, amely 860px alatt jobbról balra csúszó animációval működik, és hover-re megáll.
 
 ---
 
@@ -18,14 +18,14 @@ Reszponzív partner ikon carousel, amely 768px alatt jobbról balra csúszó ani
 
 ## 🎯 Áttekintés
 
-Ez a megoldás egy szalagszerű (marquee/carousel) animációt hoz létre a partner ikonoknak mobil eszközökön (768px alatt). Az ikonok folyamatosan jobbról balra csúsznak, és amikor az egérrel rájuk mutatunk, megáll az animáció.
+Ez a megoldás egy szalagszerű (marquee/carousel) animációt hoz létre a partner ikonoknak mobil eszközökön (860px alatt). Az ikonok folyamatosan jobbról balra csúsznak, és amikor az egérrel rájuk mutatunk, megáll az animáció.
 
-### Desktop (>768px)
+### Desktop (>860px)
 - ✅ Normál flex layout
 - ✅ Középre igazított ikonok
 - ✅ Hover effekt (kicsit nagyobb lesz)
 
-### Mobile (≤768px)
+### Mobile (≤860px)
 - ✅ Folyamatos jobbról-balra csúszás
 - ✅ Seamless loop (végtelen körforgás)
 - ✅ Hover-re megáll az animáció
@@ -90,7 +90,7 @@ add_action('wp_enqueue_scripts', 'malik_partner_carousel_scripts');
 
 ### 3. lépés: Kész! ✅
 
-A carousel automatikusan működni fog 768px alatt.
+A carousel automatikusan működni fog 860px alatt.
 
 ---
 
@@ -171,7 +171,7 @@ A carousel automatikusan működni fog 768px alatt.
 
 ```javascript
 const CONFIG = {
-    breakpoint: 1024,  // 1024px alatt aktiválódik a carousel
+    breakpoint: 1024,  // 1024px alatt aktiválódik a carousel (alapértelmezett: 860px)
     duplicateCount: 2,
     // ...
 };
@@ -191,7 +191,7 @@ const CONFIG = {
 
 ## 🎬 Működés
 
-### Desktop (>768px)
+### Desktop (>860px)
 
 ```
 ┌──────────────────────────────────────┐
@@ -201,7 +201,7 @@ const CONFIG = {
 └──────────────────────────────────────┘
 ```
 
-### Mobile (≤768px)
+### Mobile (≤860px)
 
 ```
 ┌──────────────────────────────────────┐
@@ -264,7 +264,7 @@ const CONFIG = {
 **Megoldás:**
 - Ellenőrizd, hogy a JavaScript betöltődött-e
 - Ellenőrizd, hogy a `.partnerek-sor` elem létezik az oldalon
-- Próbáld meg 768px alatti felbontásra átméretezni az ablakot
+- Próbáld meg 860px alatti felbontásra átméretezni az ablakot
 
 ### Probléma 2: Az ikonok nem duplikálódnak
 
@@ -327,10 +327,10 @@ Add hozzá a GPU gyorsítást:
 
 ### Optimalizáció
 
-- ✅ **CSS animáció**: GPU gyorsítva, nem JavaScript-tel
+- ✅ **JavaScript animáció**: requestAnimationFrame, GPU gyorsítva
 - ✅ **Will-change**: Optimalizálja a rendering-et
 - ✅ **Transform**: Hardver gyorsított animáció
-- ✅ **Lazy load**: Csak 768px alatt aktiválódik
+- ✅ **Lazy load**: Csak 860px alatt aktiválódik
 
 ### Teljesítmény metrikák
 
